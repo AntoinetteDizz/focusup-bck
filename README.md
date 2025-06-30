@@ -87,6 +87,43 @@ La aplicación usa PostgreSQL. Puedes usar Docker para desarrollo:
 docker-compose up -d
 ```
 
+## 🚀 Despliegue en Render
+
+### Configuración Inicial
+1. Conecta tu repositorio de GitHub a Render
+2. Crea un nuevo **Web Service**
+3. Selecciona tu repositorio `focusup-bck`
+
+### Configuración del Servicio
+- **Environment**: Node
+- **Build Command**: `npm install && npm run build`
+- **Start Command**: `npm run start:prod`
+- **Node Version**: 20.x (ya configurado en package.json)
+
+### Variables de Entorno en Render
+Configura las siguientes variables en tu dashboard de Render:
+
+```env
+NODE_ENV=production
+DB_HOST=your_render_postgres_host
+DB_PORT=5432
+DB_USERNAME=your_render_postgres_username
+DB_PASSWORD=your_render_postgres_password
+DB_DATABASE=your_render_postgres_database
+CORS_ORIGIN=your_frontend_url
+```
+
+### Base de Datos PostgreSQL en Render
+1. Crea un nuevo **PostgreSQL** service en Render
+2. Copia las credenciales de conexión
+3. Configura las variables de entorno con esas credenciales
+
+### Solución de Problemas de Build
+Si encuentras errores de build como "npm error could not determine executable to run":
+- El proyecto incluye un script de build personalizado (`build.js`) que maneja múltiples métodos de compilación
+- Verifica que todas las dependencias estén en `package.json`
+- Asegúrate de que Node.js 20.x esté seleccionado
+
 ## 📚 Documentación de API
 
 - [Endpoints Completos](ENDPOINTS.md)
@@ -110,7 +147,7 @@ npm run test:database
 npm run test
 ```
 
-## 🚀 Despliegue
+## 🚀 Despliegue Local
 
 1. Construir la aplicación:
    ```bash
