@@ -118,11 +118,22 @@ CORS_ORIGIN=your_frontend_url
 2. Copia las credenciales de conexión
 3. Configura las variables de entorno con esas credenciales
 
+### Configuración SSL Automática
+- La aplicación automáticamente habilita SSL cuando `NODE_ENV=production`
+- No necesitas configurar SSL manualmente, se maneja automáticamente
+- Si ves errores de "SSL/TLS required", asegúrate de que `NODE_ENV=production` esté configurado
+
 ### Solución de Problemas de Build
 Si encuentras errores de build como "npm error could not determine executable to run":
 - El proyecto incluye un script de build personalizado (`build.js`) que maneja múltiples métodos de compilación
 - Verifica que todas las dependencias estén en `package.json`
 - Asegúrate de que Node.js 20.x esté seleccionado
+
+### Solución de Problemas de Base de Datos
+Si ves errores de "SSL/TLS required":
+- Verifica que `NODE_ENV=production` esté configurado en Render
+- Asegúrate de que las credenciales de la base de datos sean correctas
+- La aplicación automáticamente configura SSL para conexiones de producción
 
 ## 📚 Documentación de API
 
